@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-matrix-bg: #050505;
+    --color-matrix-green: #39FF14;
+    --color-matrix-cyan: #00e5ff;
+    --color-matrix-border: #272730;
+  }
+
+  body {
+    background-color: var(--color-matrix-bg);
+    color: #f4f4f5;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Accessibility focus ring */
+  *:focus-visible {
+    outline: 2px solid #39FF14 !important;
+    outline-offset: 3px !important;
+    border-radius: 4px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+  border-left: 1px solid #1c1c24;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border: 1px solid #39FF14;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #39FF14;
+  box-shadow: 0 0 10px #39FF14;
+}
+
+/* LED Dot Matrix Styles */
+.led-matrix-grid {
+  background-image: radial-gradient(rgba(57, 255, 20, 0.15) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.cyber-grid-bg {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.matrix-green-glow-text {
+  color: #39FF14;
+  text-shadow: 0 0 12px rgba(57, 255, 20, 0.6), 0 0 25px rgba(57, 255, 20, 0.3);
+}
+
+.matrix-card-border {
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  transition: all 0.3s ease;
+}
+
+.matrix-card-border:hover {
+  border-color: rgba(57, 255, 20, 0.6);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.15), inset 0 0 15px rgba(57, 255, 20, 0.05);
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(18, 18, 22, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Scanline Effect */
+.scanline-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.3)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
