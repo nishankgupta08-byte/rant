@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Sparkles, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Sparkles, Instagram, Github, Linkedin } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function ContactSection({ prefilledBrief }) {
@@ -82,7 +82,7 @@ export default function ContactSection({ prefilledBrief }) {
             </div>
 
             {/* Direct Contact Info List */}
-            <div className="space-y-4 pt-4 font-mono text-xs">
+            <div className="space-y-3 pt-2 font-mono text-xs">
               <div className="flex items-center space-x-4 p-4 rounded-xl bg-matrix-card border border-matrix-border">
                 <div className="p-3 rounded-lg bg-black border border-matrix-green/40">
                   <Mail className="w-5 h-5 text-matrix-green" />
@@ -92,6 +92,36 @@ export default function ContactSection({ prefilledBrief }) {
                   <p className="text-white font-bold text-sm">hello@rant.dev</p>
                 </div>
               </div>
+
+              <a
+                href="https://www.linkedin.com/in/nishank-gupta-7167a8377"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center space-x-4 p-4 rounded-xl bg-matrix-card border border-matrix-border hover:border-matrix-green transition-all"
+              >
+                <div className="p-3 rounded-lg bg-black border border-matrix-green/40">
+                  <Linkedin className="w-5 h-5 text-matrix-green" />
+                </div>
+                <div>
+                  <span className="text-matrix-muted text-[10px] uppercase">NISHANK'S LINKEDIN</span>
+                  <p className="text-white font-bold text-sm">nishank-gupta-7167a8377</p>
+                </div>
+              </a>
+
+              <a
+                href="https://github.com/nishankgupta08-byte"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center space-x-4 p-4 rounded-xl bg-matrix-card border border-matrix-border hover:border-matrix-green transition-all"
+              >
+                <div className="p-3 rounded-lg bg-black border border-matrix-green/40">
+                  <Github className="w-5 h-5 text-matrix-green" />
+                </div>
+                <div>
+                  <span className="text-matrix-muted text-[10px] uppercase">NISHANK'S GITHUB</span>
+                  <p className="text-white font-bold text-sm">@nishankgupta08-byte</p>
+                </div>
+              </a>
 
               <a
                 href="https://www.instagram.com/not_vishu_.anymore/?utm_source=ig_web_button_share_sheet"
@@ -107,16 +137,6 @@ export default function ContactSection({ prefilledBrief }) {
                   <p className="text-white font-bold text-sm">@not_vishu_.anymore</p>
                 </div>
               </a>
-
-              <div className="flex items-center space-x-4 p-4 rounded-xl bg-matrix-card border border-matrix-border">
-                <div className="p-3 rounded-lg bg-black border border-matrix-cyan/40">
-                  <Phone className="w-5 h-5 text-matrix-cyan" />
-                </div>
-                <div>
-                  <span className="text-matrix-muted text-[10px] uppercase">PROJECT LINE</span>
-                  <p className="text-white font-bold text-sm">+1 (800) 555-RANT</p>
-                </div>
-              </div>
             </div>
 
             {/* SLA Response Guarantee Box */}

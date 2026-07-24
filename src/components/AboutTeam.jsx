@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Code, Compass, Terminal, CheckCircle, Instagram } from 'lucide-react';
+import { Users, Code, Compass, Terminal, CheckCircle, Instagram, Github, Linkedin } from 'lucide-react';
 
 export default function AboutTeam() {
   return (
@@ -30,7 +30,7 @@ export default function AboutTeam() {
                 <div className="p-4 rounded-xl bg-black border border-matrix-green/40 shadow-neon-green">
                   <Code className="w-8 h-8 text-matrix-green" />
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <a
                     href="https://www.instagram.com/not_vishu_.anymore/?utm_source=ig_web_button_share_sheet"
                     target="_blank"
@@ -41,9 +41,26 @@ export default function AboutTeam() {
                   >
                     <Instagram className="w-4 h-4 text-matrix-green" />
                   </a>
-                  <span className="text-[11px] font-mono font-bold px-3 py-1 rounded bg-matrix-green/10 text-matrix-green border border-matrix-green/30">
-                    FOUNDER & HEAD DEV
-                  </span>
+                  <a
+                    href="https://github.com/nishankgupta08-byte"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2 rounded-lg bg-black border border-matrix-border text-matrix-muted hover:text-matrix-green hover:border-matrix-green transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    title="Nishank on GitHub"
+                    aria-label="Nishank GitHub Profile"
+                  >
+                    <Github className="w-4 h-4 text-matrix-green" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/nishank-gupta-7167a8377"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2 rounded-lg bg-black border border-matrix-border text-matrix-muted hover:text-matrix-green hover:border-matrix-green transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    title="Nishank on LinkedIn"
+                    aria-label="Nishank LinkedIn Profile"
+                  >
+                    <Linkedin className="w-4 h-4 text-matrix-green" />
+                  </a>
                 </div>
               </div>
 
@@ -59,16 +76,27 @@ export default function AboutTeam() {
               </p>
             </div>
 
-            <div className="pt-4 border-t border-matrix-border/60 flex items-center justify-between text-xs font-mono text-matrix-muted">
+            <div className="pt-4 border-t border-matrix-border/60 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-matrix-muted">
               <span>SPECIALTY: NEXT.JS & CORE WEB VITALS</span>
-              <a
-                href="https://www.instagram.com/not_vishu_.anymore/?utm_source=ig_web_button_share_sheet"
-                target="_blank"
-                rel="noreferrer"
-                className="text-matrix-green hover:underline flex items-center gap-1"
-              >
-                <span>@not_vishu_.anymore</span>
-              </a>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/nishankgupta08-byte"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-matrix-green hover:underline flex items-center gap-1"
+                >
+                  <span>GitHub</span>
+                </a>
+                <span className="text-matrix-border">|</span>
+                <a
+                  href="https://www.linkedin.com/in/nishank-gupta-7167a8377"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-matrix-green hover:underline flex items-center gap-1"
+                >
+                  <span>LinkedIn</span>
+                </a>
+              </div>
             </div>
           </div>
 
