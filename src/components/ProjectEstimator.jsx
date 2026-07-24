@@ -90,7 +90,7 @@ export default function ProjectEstimator({ onSelectEstimate }) {
   };
 
   return (
-    <section id="estimator" className="py-24 bg-matrix-bg relative border-b border-matrix-border/50">
+    <section id="estimator" className="py-24 bg-transparent relative border-b border-matrix-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}

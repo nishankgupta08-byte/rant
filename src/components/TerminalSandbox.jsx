@@ -98,7 +98,7 @@ export default function TerminalSandbox({ onOpenEstimator }) {
   };
 
   return (
-    <section id="terminal" className="py-20 bg-matrix-bg relative border-b border-matrix-border/50">
+    <section id="terminal" className="py-20 bg-transparent relative border-b border-matrix-border/50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">

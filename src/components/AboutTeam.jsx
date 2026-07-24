@@ -3,7 +3,7 @@ import { Users, Code, Compass, Terminal, CheckCircle, Instagram, Github, Linkedi
 
 export default function AboutTeam() {
   return (
-    <section id="team" className="py-24 bg-matrix-dark relative border-b border-matrix-border/50">
+    <section id="team" className="py-24 bg-black/30 relative border-b border-matrix-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}

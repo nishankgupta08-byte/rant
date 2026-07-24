@@ -27,7 +27,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-20 bg-matrix-bg relative border-b border-matrix-border/50">
+    <section className="py-20 bg-transparent relative border-b border-matrix-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">

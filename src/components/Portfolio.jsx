@@ -89,7 +89,7 @@ export default function Portfolio() {
     : projects.filter(p => p.category === filter);
 
   return (
-    <section id="portfolio" className="py-24 bg-matrix-dark relative border-b border-matrix-border/50">
+    <section id="portfolio" className="py-24 bg-black/30 relative border-b border-matrix-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
