@@ -34,16 +34,11 @@ function randomChar() {
   return CHARS[Math.floor(Math.random() * CHARS.length)];
 }
 
-export default function MatrixBackground({ enabled = false }) {
+export default function MatrixBackground() {
   const canvasRef = useRef(null);
   const [canvasVisible, setCanvasVisible] = useState(false);
 
   useEffect(() => {
-    if (!enabled) {
-      setCanvasVisible(false);
-      return;
-    }
-
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
@@ -149,20 +144,18 @@ export default function MatrixBackground({ enabled = false }) {
       document.removeEventListener('visibilitychange', handleVisibility);
       setCanvasVisible(false);
     };
-  }, [enabled]);
+  }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <div className="absolute inset-0 cyber-grid-bg opacity-40" />
 
-      {enabled && (
-        <canvas
-          ref={canvasRef}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
-            canvasVisible ? 'opacity-25' : 'opacity-0'
-          }`}
-        />
-      )}
+      <canvas
+        ref={canvasRef}
+        className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
+          canvasVisible ? 'opacity-25' : 'opacity-0'
+        }`}
+      />
     </div>
   );
 }

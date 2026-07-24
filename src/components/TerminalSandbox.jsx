@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Terminal, CornerDownLeft } from 'lucide-react';
 
-export default function TerminalSandbox({ onOpenEstimator, onToggleMatrix }) {
+export default function TerminalSandbox({ onOpenEstimator }) {
   const [inputVal, setInputVal] = useState('');
   const [history, setHistory] = useState([
     { type: 'system', content: 'RANT Interactive Console v2.6. Type "help" to view available commands.' }
@@ -29,7 +29,7 @@ export default function TerminalSandbox({ onOpenEstimator, onToggleMatrix }) {
   • services   : List RANT core web agency offerings
   • founders   : Display team & founders information
   • quote      : Launch interactive project scope estimator
-  • matrix     : Toggle retro matrix rain background effect
+  • matrix     : Show matrix background status
   • contact    : Jump directly to contact form
   • clear      : Clear console output screen`
         });
@@ -67,10 +67,9 @@ export default function TerminalSandbox({ onOpenEstimator, onToggleMatrix }) {
         break;
 
       case 'matrix':
-        onToggleMatrix();
         newHistory.push({
           type: 'output',
-          content: `[SYSTEM]: Matrix FX state toggled.`
+          content: `[SYSTEM]: Matrix FX is always active.`
         });
         break;
 

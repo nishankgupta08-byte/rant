@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Terminal, ChevronRight, Zap, Shield, PhoneCall } from 'lucide-react';
+import { Menu, X, ChevronRight, Zap } from 'lucide-react';
 import LedLogo from './LedLogo';
 
-export default function Navbar({ onOpenEstimator, matrixMode, setMatrixMode }) {
+export default function Navbar({ onOpenEstimator }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -59,21 +59,6 @@ export default function Navbar({ onOpenEstimator, matrixMode, setMatrixMode }) {
 
           {/* Desktop Right Action Controls */}
           <div className="hidden lg:flex items-center space-x-3">
-            {/* Matrix Rain Toggle */}
-            <button
-              onClick={() => setMatrixMode(!matrixMode)}
-              className={`p-2.5 rounded-lg border text-xs font-mono flex items-center gap-2 min-h-[44px] min-w-[44px] transition-all ${
-                matrixMode
-                  ? 'border-matrix-green text-matrix-green bg-matrix-green/10 shadow-neon-green'
-                  : 'border-matrix-border text-matrix-muted hover:text-white hover:border-matrix-green/50'
-              }`}
-              title="Toggle Matrix FX"
-              aria-label="Toggle Matrix FX background effect"
-            >
-              <Terminal className="w-4 h-4" />
-              <span>{matrixMode ? 'FX: ON' : 'FX: OFF'}</span>
-            </button>
-
             {/* Quick Estimator CTA */}
             <button
               onClick={onOpenEstimator}
@@ -86,13 +71,6 @@ export default function Navbar({ onOpenEstimator, matrixMode, setMatrixMode }) {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center space-x-2 lg:hidden">
-            <button
-              onClick={() => setMatrixMode(!matrixMode)}
-              className="p-2.5 rounded-lg border border-matrix-border text-matrix-muted min-h-[44px] min-w-[44px] flex items-center justify-center"
-              aria-label="Toggle Matrix mode"
-            >
-              <Terminal className="w-5 h-5" />
-            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-lg border border-matrix-border text-matrix-text hover:text-matrix-green min-h-[44px] min-w-[44px] flex items-center justify-center"
