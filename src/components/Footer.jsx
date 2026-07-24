@@ -28,31 +28,24 @@ export default function Footer({ onOpenPrivacy, onOpenTerms }) {
                 <Instagram className="w-4 h-4 text-matrix-green" />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/nishankgupta08-byte"
                 target="_blank"
                 rel="noreferrer"
                 className="p-2.5 rounded-lg bg-matrix-dark border border-matrix-border text-matrix-muted hover:text-matrix-green hover:border-matrix-green/50 min-h-[44px] min-w-[44px] flex items-center justify-center transition-all"
-                aria-label="RANT GitHub Repository"
+                title="Nishank on GitHub (@nishankgupta08-byte)"
+                aria-label="Nishank GitHub Profile"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-4 h-4 text-matrix-green" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://www.linkedin.com/in/nishank-gupta-7167a8377"
                 target="_blank"
                 rel="noreferrer"
                 className="p-2.5 rounded-lg bg-matrix-dark border border-matrix-border text-matrix-muted hover:text-matrix-green hover:border-matrix-green/50 min-h-[44px] min-w-[44px] flex items-center justify-center transition-all"
-                aria-label="RANT Twitter Profile"
+                title="Nishank on LinkedIn"
+                aria-label="Nishank LinkedIn Profile"
               >
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2.5 rounded-lg bg-matrix-dark border border-matrix-border text-matrix-muted hover:text-matrix-green hover:border-matrix-green/50 min-h-[44px] min-w-[44px] flex items-center justify-center transition-all"
-                aria-label="RANT LinkedIn Page"
-              >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-4 h-4 text-matrix-green" />
               </a>
             </div>
           </div>
