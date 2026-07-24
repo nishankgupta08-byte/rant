@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Terminal, CornerDownLeft } from 'lucide-react';
 
-export default function TerminalSandbox({ onOpenEstimator, onToggleMatrix }) {
+export default function TerminalSandbox({ onOpenEstimator }) {
   const [inputVal, setInputVal] = useState('');
   const [history, setHistory] = useState([
     { type: 'system', content: 'RANT Interactive Console v2.6. Type "help" to view available commands.' }
@@ -29,7 +29,7 @@ export default function TerminalSandbox({ onOpenEstimator, onToggleMatrix }) {
   • services   : List RANT core web agency offerings
   • founders   : Display team & founders information
   • quote      : Launch interactive project scope estimator
-  • matrix     : Toggle retro matrix rain background effect
+  • matrix     : Show matrix background status
   • contact    : Jump directly to contact form
   • clear      : Clear console output screen`
         });
@@ -67,10 +67,9 @@ export default function TerminalSandbox({ onOpenEstimator, onToggleMatrix }) {
         break;
 
       case 'matrix':
-        onToggleMatrix();
         newHistory.push({
           type: 'output',
-          content: `[SYSTEM]: Matrix FX state toggled.`
+          content: `[SYSTEM]: Matrix FX is always active.`
         });
         break;
 
@@ -99,7 +98,7 @@ export default function TerminalSandbox({ onOpenEstimator, onToggleMatrix }) {
   };
 
   return (
-    <section id="terminal" className="py-20 bg-matrix-bg relative border-b border-matrix-border/50">
+    <section id="terminal" className="py-20 bg-transparent relative border-b border-matrix-border/50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">

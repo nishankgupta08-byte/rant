@@ -5,45 +5,29 @@ const MATRIX_CYAN = '#00e5ff';
 const MATRIX_PURPLE = '#b55fe6';
 
 const CHARS = '0123456789ABCDEF:3RANT';
-const FONT_SIZE = 14;
+const FONT_SIZE = 16;
+const TRAIL_LENGTH = 18;
 
 function pickColumnPalette() {
   const roll = Math.random();
   if (roll < 0.075) {
-    return {
-      glow: MATRIX_CYAN,
-      body: 'rgba(0, 229, 255, 0.35)',
-      head: '#e0fbff',
-    };
+    return { glow: MATRIX_CYAN, rgb: [0, 229, 255] };
   }
   if (roll < 0.15) {
-    return {
-      glow: MATRIX_PURPLE,
-      body: 'rgba(181, 95, 230, 0.35)',
-      head: '#f0e0ff',
-    };
+    return { glow: MATRIX_PURPLE, rgb: [181, 95, 230] };
   }
-  return {
-    glow: MATRIX_GREEN,
-    body: 'rgba(57, 255, 20, 0.35)',
-    head: '#e8ffe8',
-  };
+  return { glow: MATRIX_GREEN, rgb: [57, 255, 20] };
 }
 
 function randomChar() {
   return CHARS[Math.floor(Math.random() * CHARS.length)];
 }
 
-export default function MatrixBackground({ enabled = false }) {
+export default function MatrixBackground() {
   const canvasRef = useRef(null);
   const [canvasVisible, setCanvasVisible] = useState(false);
 
   useEffect(() => {
-    if (!enabled) {
-      setCanvasVisible(false);
-      return;
-    }
-
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
@@ -63,17 +47,17 @@ export default function MatrixBackground({ enabled = false }) {
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let columns = 0;
+    /** @type {{ y: number, speed: number, glow: string, rgb: number[], trail: string[] }[]} */
     let drops = [];
-    let speeds = [];
-    let palettes = [];
-    let headChars = [];
 
     const initColumns = () => {
       columns = Math.floor(width / FONT_SIZE);
-      drops = Array.from({ length: columns }, () => Math.random() * height * -0.1);
-      speeds = Array.from({ length: columns }, () => 0.35 + Math.random() * 1.25);
-      palettes = Array.from({ length: columns }, pickColumnPalette);
-      headChars = Array.from({ length: columns }, randomChar);
+      drops = Array.from({ length: columns }, () => ({
+        y: Math.random() * -height,
+        speed: 0.55 + Math.random() * 1.6,
+        ...pickColumnPalette(),
+        trail: Array.from({ length: TRAIL_LENGTH }, randomChar),
+      }));
     };
 
     const resizeCanvas = () => {
@@ -107,33 +91,41 @@ export default function MatrixBackground({ enabled = false }) {
       ctx.textBaseline = 'top';
 
       for (let i = 0; i < columns; i++) {
-        const prevRow = Math.floor(drops[i] / FONT_SIZE);
-        drops[i] += speeds[i];
-        const row = Math.floor(drops[i] / FONT_SIZE);
+        const drop = drops[i];
+        const prevRow = Math.floor(drop.y / FONT_SIZE);
+        drop.y += drop.speed;
+        const row = Math.floor(drop.y / FONT_SIZE);
 
         if (row !== prevRow) {
-          headChars[i] = randomChar();
+          drop.trail.pop();
+          drop.trail.unshift(randomChar());
         }
 
         const x = i * FONT_SIZE;
-        const y = drops[i];
-        const { glow, body, head } = palettes[i];
-        const char = headChars[i];
+        const [r, g, b] = drop.rgb;
 
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = body;
-        ctx.fillText(char, x, y);
+        for (let t = 0; t < drop.trail.length; t++) {
+          const charY = drop.y - t * FONT_SIZE;
+          if (charY < -FONT_SIZE || charY > height) continue;
 
-        ctx.fillStyle = head;
-        ctx.shadowBlur = 16;
-        ctx.shadowColor = glow;
-        ctx.fillText(char, x, y);
-        ctx.shadowBlur = 0;
+          if (t === 0) {
+            ctx.shadowBlur = 16;
+            ctx.shadowColor = drop.glow;
+            ctx.fillStyle = '#f5fff5';
+            ctx.fillText(drop.trail[t], x, charY);
+            ctx.shadowBlur = 0;
+          } else {
+            const fade = 1 - t / drop.trail.length;
+            const alpha = Math.max(0.12, fade * 0.85);
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            ctx.fillText(drop.trail[t], x, charY);
+          }
+        }
 
-        if (y > height && Math.random() > 0.975) {
-          drops[i] = Math.random() * -80;
-          palettes[i] = pickColumnPalette();
-          headChars[i] = randomChar();
+        if (drop.y - TRAIL_LENGTH * FONT_SIZE > height && Math.random() > 0.975) {
+          drop.y = Math.random() * -120;
+          Object.assign(drop, pickColumnPalette());
+          drop.trail = Array.from({ length: TRAIL_LENGTH }, randomChar);
         }
       }
 
@@ -149,20 +141,21 @@ export default function MatrixBackground({ enabled = false }) {
       document.removeEventListener('visibilitychange', handleVisibility);
       setCanvasVisible(false);
     };
-  }, [enabled]);
+  }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      <div className="absolute inset-0 cyber-grid-bg opacity-40" />
+    <div
+      className="fixed inset-0 pointer-events-none z-[1] overflow-hidden"
+      aria-hidden="true"
+    >
+      <div className="absolute inset-0 cyber-grid-bg opacity-30" />
 
-      {enabled && (
-        <canvas
-          ref={canvasRef}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
-            canvasVisible ? 'opacity-25' : 'opacity-0'
-          }`}
-        />
-      )}
+      <canvas
+        ref={canvasRef}
+        className={`absolute inset-0 mix-blend-screen transition-opacity duration-1000 ease-out ${
+          canvasVisible ? 'opacity-80' : 'opacity-0'
+        }`}
+      />
     </div>
   );
 }

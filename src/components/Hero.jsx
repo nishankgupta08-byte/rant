@@ -19,7 +19,7 @@ export default function Hero({ onOpenEstimator }) {
   }, []);
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-matrix-bg border-b border-matrix-border/50">
+    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-transparent border-b border-matrix-border/50">
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-matrix-green/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute top-1/3 right-10 w-[300px] h-[300px] bg-matrix-cyan/10 blur-[100px] rounded-full pointer-events-none" />

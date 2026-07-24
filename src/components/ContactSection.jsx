@@ -60,7 +60,7 @@ export default function ContactSection({ prefilledBrief }) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-matrix-dark relative border-b border-matrix-border/50">
+    <section id="contact" className="py-24 bg-black/30 relative border-b border-matrix-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">

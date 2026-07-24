@@ -15,7 +15,6 @@ import Footer from './components/Footer';
 import { PrivacyModal, TermsModal } from './components/LegalModals';
 
 export default function App() {
-  const [matrixMode, setMatrixMode] = useState(false);
   const [prefilledBrief, setPrefilledBrief] = useState('');
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
@@ -34,17 +33,13 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-matrix-bg text-matrix-text selection:bg-matrix-green selection:text-black">
       {/* Background Matrix FX */}
-      <MatrixBackground enabled={matrixMode} />
+      <MatrixBackground />
 
       {/* Main Content Layer */}
       <div className="relative z-10">
         
         {/* Navigation Header */}
-        <Navbar
-          onOpenEstimator={handleOpenEstimator}
-          matrixMode={matrixMode}
-          setMatrixMode={setMatrixMode}
-        />
+        <Navbar onOpenEstimator={handleOpenEstimator} />
 
         {/* Main Landing Page Sections */}
         <main id="main-content">
@@ -55,10 +50,7 @@ export default function App() {
           <WhyChooseUs onOpenEstimator={handleOpenEstimator} />
           <AboutTeam />
           <Testimonials />
-          <TerminalSandbox
-            onOpenEstimator={handleOpenEstimator}
-            onToggleMatrix={() => setMatrixMode(!matrixMode)}
-          />
+          <TerminalSandbox onOpenEstimator={handleOpenEstimator} />
           <InsightsBlog />
           <ContactSection prefilledBrief={prefilledBrief} />
         </main>
