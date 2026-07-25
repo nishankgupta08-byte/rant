@@ -34,7 +34,7 @@ export default function ContactSection({ prefilledBrief }) {
     return errs;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -45,7 +45,23 @@ export default function ContactSection({ prefilledBrief }) {
     setErrors({});
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      // Send form data to backend API
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit form');
+      }
+
       setLoading(false);
       setSubmitted(true);
       try {
@@ -56,7 +72,13 @@ export default function ContactSection({ prefilledBrief }) {
           colors: ['#39FF14', '#00e5ff', '#ffffff']
         });
       } catch (err) {}
-    }, 1200);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setLoading(false);
+      setErrors({
+        submit: error.message || 'Failed to submit your inquiry. Please try again.'
+      });
+    }
   };
 
   return (
@@ -285,11 +307,19 @@ export default function ContactSection({ prefilledBrief }) {
                     )}
                   </div>
 
+                  {/* Submit Error Message */}
+                  {errors.submit && (
+                    <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                      <span>{errors.submit}</span>
+                    </div>
+                  )}
+
                   {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 px-6 font-mono text-xs font-bold uppercase tracking-wider text-black bg-matrix-green rounded-xl shadow-neon-green hover:bg-matrix-green-light hover:shadow-neon-green-strong transition-all flex items-center justify-center gap-2 min-h-[48px]"
+                    className="w-full py-4 px-6 font-mono text-xs font-bold uppercase tracking-wider text-black bg-matrix-green rounded-xl shadow-neon-green hover:bg-matrix-green-light hover:shadow-neon-green-strong transition-all flex items-center justify-center gap-2 min-h-[48px] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>
@@ -299,7 +329,7 @@ export default function ContactSection({ prefilledBrief }) {
                     ) : (
                       <>
                         <Send className="w-4 h-4 fill-black" />
-                        <span>Send Message</span>
+                        <span>Transmit Brief</span>
                       </>
                     )}
                   </button>
